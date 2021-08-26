@@ -100,7 +100,8 @@ class App extends Component {
 						key={index}
 						toggleTaskStatus={() => this.toggleTaskStatus(index)}
 						deleteTask={() => this.deleteTask(index)}
-						{...elm}
+						name={elm.name}
+						done={elm.done}
 					/>
 				))}
 			</Container>
