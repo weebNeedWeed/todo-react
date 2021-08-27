@@ -25,11 +25,13 @@ class TaskInput extends Component {
 			taskName: "",
 		};
 		this.handleChange = this.handleChange.bind(this);
-		this.handleClick = this.handleClick.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleClick() {
+	handleSubmit(event) {
+		event.preventDefault();
 		this.props.addTask(this.state.taskName);
+		this.setState({ taskName: "" });
 	}
 
 	handleChange(event) {
@@ -40,14 +42,18 @@ class TaskInput extends Component {
 		const { classes } = this.props;
 
 		return (
-			<Paper className={classes.paper}>
+			<Paper
+				className={classes.paper}
+				component="form"
+				onSubmit={this.handleSubmit}
+			>
 				<InputBase
 					placeholder="Add new task"
 					className={classes.input}
 					value={this.state.taskName}
 					onChange={this.handleChange}
 				/>
-				<IconButton onClick={this.handleClick}>
+				<IconButton type="submit">
 					<AddIcon />
 				</IconButton>
 			</Paper>
