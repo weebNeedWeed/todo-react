@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import TaskInput from "./TaskInput";
 import TaskItem from "./TaskItem";
+import PropTypes from "prop-types";
 
 const styles = {
 	typography: {
@@ -48,12 +49,7 @@ class App extends Component {
 			done: false,
 		});
 
-		this.setState(
-			{
-				listTask: listTaskClone,
-			},
-			() => this.saveChange(),
-		);
+		this.setState({ listTask: listTaskClone }, () => this.saveChange());
 	}
 
 	toggleTaskStatus(index) {
@@ -61,12 +57,7 @@ class App extends Component {
 
 		listTaskClone[index].done = !listTaskClone[index].done;
 
-		this.setState(
-			{
-				listTask: listTaskClone,
-			},
-			() => this.saveChange(),
-		);
+		this.setState({ listTask: listTaskClone }, () => this.saveChange());
 	}
 
 	deleteTask(index) {
@@ -76,12 +67,7 @@ class App extends Component {
 			(elm, taskIndex) => taskIndex !== index,
 		);
 
-		this.setState(
-			{
-				listTask: listTaskClone,
-			},
-			() => this.saveChange(),
-		);
+		this.setState({ listTask: listTaskClone }, () => this.saveChange());
 	}
 
 	render() {
@@ -108,5 +94,9 @@ class App extends Component {
 		);
 	}
 }
+
+App.propTypes = {
+	classes: PropTypes.object,
+};
 
 export default withStyles(styles)(App);

@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import DeleteIcon from "@material-ui/icons/Delete";
+import PropTypes from "prop-types";
 
 const styles = {
 	paper: {
@@ -46,5 +47,13 @@ class TaskItem extends Component {
 		);
 	}
 }
+
+TaskItem.propTypes = {
+	classes: PropTypes.object,
+	done: PropTypes.bool,
+	name: PropTypes.string,
+	toggleTaskStatus: PropTypes.func,
+	deleteTask: PropTypes.func,
+};
 
 export default withStyles(styles)(TaskItem);
