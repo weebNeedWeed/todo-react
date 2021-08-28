@@ -43,31 +43,28 @@ class App extends Component {
 
 	addTask(taskName) {
 		let listTaskClone = [...this.state.listTask];
-
 		listTaskClone.push({
 			name: taskName,
 			done: false,
 		});
 
-		this.setState({ listTask: listTaskClone }, () => this.saveChange());
+		this.setState({ listTask: listTaskClone }, this.saveChange);
 	}
 
 	toggleTaskStatus(index) {
 		let listTaskClone = [...this.state.listTask];
-
 		listTaskClone[index].done = !listTaskClone[index].done;
 
-		this.setState({ listTask: listTaskClone }, () => this.saveChange());
+		this.setState({ listTask: listTaskClone }, this.saveChange);
 	}
 
 	deleteTask(index) {
 		let listTaskClone = [...this.state.listTask];
-
 		listTaskClone = listTaskClone.filter(
 			(elm, taskIndex) => taskIndex !== index,
 		);
 
-		this.setState({ listTask: listTaskClone }, () => this.saveChange());
+		this.setState({ listTask: listTaskClone }, this.saveChange);
 	}
 
 	render() {
