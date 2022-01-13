@@ -5,6 +5,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import DeleteIcon from "@material-ui/icons/Delete";
 import PropTypes from "prop-types";
+import EditIcon from "@material-ui/icons/Edit";
 
 const styles = {
 	paper: {
@@ -13,14 +14,18 @@ const styles = {
 		justifyContent: "space-between",
 	},
 	deleteButton: {
-		marginTop: "auto",
-		marginBottom: "auto",
 		color: "red",
 		cursor: "pointer",
 	},
-	label: {
-		textDecoration: (props) => (props.done ? "line-through" : "none"),
+	editButton: {
+		color: "black",
+		cursor: "pointer",
 	},
+	actionWrapper: {
+		display: "flex",
+		alignItems: "center",
+	},
+	label: { textDecoration: (props) => (props.done ? "line-through" : "none") },
 };
 
 class TaskItem extends Component {
@@ -39,10 +44,16 @@ class TaskItem extends Component {
 					label={this.props.name}
 					className={classes.label}
 				/>
-				<DeleteIcon
-					className={classes.deleteButton}
-					onClick={this.props.deleteTask}
-				/>
+				<div className={classes.actionWrapper}>
+					<EditIcon
+						className={classes.editButton}
+						onClick={this.props.editTask}
+					/>
+					<DeleteIcon
+						className={classes.deleteButton}
+						onClick={this.props.deleteTask}
+					/>
+				</div>
 			</Paper>
 		);
 	}
@@ -52,8 +63,9 @@ TaskItem.propTypes = {
 	classes: PropTypes.object,
 	done: PropTypes.bool,
 	name: PropTypes.string,
-	toggleTaskStatus: PropTypes.func,
 	deleteTask: PropTypes.func,
+	toggleTaskStatus: PropTypes.func,
+	editTask: PropTypes.func,
 };
 
 export default withStyles(styles)(TaskItem);

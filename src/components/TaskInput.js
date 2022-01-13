@@ -25,19 +25,17 @@ class TaskInput extends Component {
 		this.state = {
 			taskName: "",
 		};
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit(event) {
+	handleSubmit = (event) => {
 		event.preventDefault();
-		this.props.addTask(this.state.taskName);
-		this.setState({ taskName: "" });
-	}
 
-	handleChange(event) {
+		this.props.addTask(this.state.taskName);
+	};
+
+	handleChange = (event) => {
 		this.setState({ taskName: event.target.value });
-	}
+	};
 
 	render() {
 		const { classes } = this.props;
